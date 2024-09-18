@@ -129,7 +129,7 @@ def load_data(fn: str) -> dict:
         for j, g2 in enumerate(df_rels.columns):
             if i <= j:
                 continue
-            w = (df_rels[g1][g2] + 1) ** 2
+            w = df_rels[g1][g2] ** 2
             guests[g1][g2] = {'weight': w, 'weight_ts': 1000 - w}
     return guests
 
@@ -139,7 +139,8 @@ def main():
     guests = load_data('wedding_relationships.csv')
 
     G = nx.Graph(guests)
-    min_partitions, min_cut = karger(G, 6, n=2_000, max_partition_size=9)
+    min_partitions, min_cut = karger(G, 3, n=500, max_partition_size=4)
+    # min_partitions, min_cut = karger(G, 6, n=2_000, max_partition_size=9)
     # min_partitions, min_cut = karger_stein(G, 6, n=1_000, max_partition_size=9)
 
     optimal_tables = []
