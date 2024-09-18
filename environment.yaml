@@ -1,0 +1,15 @@
+name: WeddingSeating
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - networkx>=3.3
+  - yaml>=0.2.5
+  - pyyaml>=6.0.1
+  - pandas>=2.2.2
+  - numpy>=2.1.0
+  - pip:
+    - matplotlib>=3.9.2
