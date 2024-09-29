@@ -69,12 +69,16 @@ def load_data(fn: str) -> dict:
     return guests
 
 
-def main():
+def main(
+    relationships: str,
+    num_max_tables: int,
+    num_iterations: int,
+):
 
-    guests = load_data('wedding_relationships.csv')
+    guests = load_data(relationships)
 
     G = nx.Graph(guests)
-    min_partitions, min_cut = karger(G, 3, n=500, max_partition_size=4)
+    min_partitions, min_cut = karger(G, num_max_tables, n=num_iterations, max_partition_size=4)
 
     optimal_tables = []
     for i, table in enumerate(min_partitions, start=1):
@@ -93,4 +97,12 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--relationships', default='wedding_relationships.csv', help='Name of csv containing matrix of relationships', type=str)
+    parser.add_argument('--num_max_tables', default=3, help='Maximum number of tables allowed', type=int)
+    parser.add_argument('--num_iterations', default=500, help='Number of iterations to run the algorithm', type=int)
+    args = parser.parse_args()
+
+    main(relationships=args.relationships, num_max_tables=args.num_max_tables, num_iterations=args.num_iterations)
