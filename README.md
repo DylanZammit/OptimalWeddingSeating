@@ -71,7 +71,9 @@ Let us run the script to this dummy example shown above with just 9 people and 3
 Notice that these groups of people contain the full set of Beatles, Mick Jagger and Keith Richards, David Gilmour and Bob Dylan.
 It seems natural that band member have a closer relationship than the others, and we would expect the model to place them
 on the same tables.
+
 ![partition](https://github.com/DylanZammit/OptimalWeddingSeating/blob/master/img/toy_partition.png?raw=true)
+
 From the results above we can see that the model indeed placed the Beatles on their own separate table, another table containing
 both of the Stones members along with Eric and Bob. David Gilmour, however, was chosen to sit on a table alone. Cruel as this
 may seem, the relationship matrix suggests that there is not much love between him and the rest of the guests.
