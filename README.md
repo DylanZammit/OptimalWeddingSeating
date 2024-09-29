@@ -86,7 +86,7 @@ For the following explanation, see these [lecture notes](https://www.cs.princeto
 which minimises the "cut" weights resulting in the partition. More formally, we want to find a subset of nodes $`S`$
 such that the set of edges leaving $`S`$, denoted by $`E(S, \overline{S})`$ has minimum size across all subsets
 ```math
-\hat{S}=\argmin_SE(S, \overline{S}).
+S^*=\text{argmin}_SE(S, \overline{S}).
 ```
 Karger's algorithm is a non-determinstic random algorithm.
 At each iteration we pick two random nodes $`u, v\in V(G)^2`$, and contract the graph.
