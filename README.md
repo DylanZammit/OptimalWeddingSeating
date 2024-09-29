@@ -62,9 +62,17 @@ of the project means it will automatically be picked up and loaded as the relati
 
 Once this is done, we can run the following command by using the conda interpreted
 ```bash
-/path/to/conda/env/python main.py
+/path/to/conda/env/python main.py \
+  --relationships WeddingRelationships.csv \
+  --num_max_tables 3 \
+  --num_iterations 500
 ```
-*TODO*: Include the relationship csv and number of tables as parameters to `main.py`.
+The allowed arguments are as follows.
+- _relationships_: name of csv containing matrix of relationships as explained above
+- _num_max_table_: the maximum number of tables allowed to split the guests in.$`^1`$
+- _num_iterations_: the number of iterations to run Karger's algorithm for.
+
+$`^1`$ The approach taken to limit the minimum k-cut to a fixed maximum number of tables, while attempting to balancing out the table sizes is rather heuristic. I will need to explain this in some detail later.
 ## Results
 Let us run the script to this dummy example shown above with just 9 people and 3 tables, each with at most 4 people.
 
