@@ -80,4 +80,28 @@ Also notice how Mick Jagger and Keith Richards were placed right next to each ot
 of the TSP optimisation problem. Ringo sits between George and Paul since he has a closer relationship with them than John.
 ## Appendix
 ### Min k-cut Algorithm
+For the following explanation, see these [lecture notes](https://www.cs.princeton.edu/courses/archive/fall13/cos521/lecnotes/lec2final.pdf). Consider a graph $`G`$ which needs to be partitioned into two disjoint subgraphs. The target is to chose the edges to remove
+which minimises the "cut" weights resulting in the partition. More formally, we want to find a subset of nodes $`S`$
+such that the set of edges leaving $`S`$, denoted by $`E(S, \overline{S})`$ has minimum size across all subsets
+```math
+\hat{S}=\argmin_SE(S, \overline{S}).
+```
+Karger's algorithm is a non-determinstic random algorithm.
+At each iteration we pick two random nodes $`u, v\in V(G)^2`$, and contract the graph.
+We ignore self loops, but parallel edges are allowed. We repeat this procedure until only two nodes
+remain, with only parallel edges between the two remaining. Cutting these parallel edges and expanding the graph
+again, we get a disjoint graph. Repeating this process for many iterations, we can then take the minimum cut as our
+estimate.
+
+This algorithm hinges on the fact that picking two random vertices to contract (and hence the edges between the two) is 
+more likely than not to be two nodes having many edges between them. Thus we should expect the algorithm to converge
+to the true solution with enough repetitions.
+
+In our case, we have a weighted graph of "relationship scores" between each node. The same concept described above applies, 
+where we only have to change the fact that the edges are now randomly chosen according to their weights: the higher the weight,
+the more likely to be chosen.
+
+An extension of this algorithm is the [Karger-Stein algorithm](https://www.cs.toronto.edu/~anikolov/CSC473W20/Lectures/Karger-Stein.pdf)
+which amplies the probability of success without slowing down the algorithm by much. This will reduce the search space required
+to find an optimal result. This algorithm relies on the fact that the early contractions are less likely to destroy the min-cut (to quote the linked lecture notes).
 ### Travelling Salesman Problem
