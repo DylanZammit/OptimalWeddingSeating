@@ -105,3 +105,10 @@ An extension of this algorithm is the [Karger-Stein algorithm](https://www.cs.to
 which amplies the probability of success without slowing down the algorithm by much. This will reduce the search space required
 to find an optimal result. This algorithm relies on the fact that the early contractions are less likely to destroy the min-cut (to quote the linked lecture notes).
 ### Travelling Salesman Problem
+Given a weighted graph $`G`$, the TSP aims to find the shortest circular path that traverses all nodes with the minimal cost.
+In other words, it aims to find the minimal cost Hamiltonian cycle.
+
+This is perhaps the most famous NP-hard problem. There are however, greedy algorithms and heuristic approaches to find
+approximate solutions. Since each table in our use-case is realistically at most around 10, this does not concern us much. 
+
+The method used in our case is the default given by `networkX`, which is [Christofides algorithm](https://en.wikipedia.org/wiki/Christofides_algorithm).
